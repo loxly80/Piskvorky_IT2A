@@ -87,5 +87,33 @@ namespace Piskvorky_IT2A
         }
       }
     }
+    public int Right
+    {
+      get
+      {
+        if (Items.Count == 0)
+        {
+          return 0;
+        }
+        else if (Items.Count == 1)
+        {
+          return 5;
+        }
+        else
+        {
+          int right = 0;
+          foreach (Item item in Items)
+          {
+            if (item.X > right)
+            {
+              right = item.Y;
+            }
+          }
+          return Math.Abs(right) + 5;
+        }
+      }
+    }
+
+
   }
 }
