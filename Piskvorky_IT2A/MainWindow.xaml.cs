@@ -20,8 +20,11 @@ namespace Piskvorky_IT2A
   /// </summary>
   public partial class MainWindow : Window
   {
+    Game game;
+
     public MainWindow()
     {
+      game = new Game();
       InitializeComponent();
       Background = Brushes.DarkGray;
     }
@@ -62,8 +65,8 @@ namespace Piskvorky_IT2A
     }
 
     private void Window_Initialized(object sender, EventArgs e)
-    {
-      var grid = CreateGrid(20,30,30);
+    {      
+      var grid = CreateGrid(70,3,3);
       FillGridWithButtons(grid);
     }
   }

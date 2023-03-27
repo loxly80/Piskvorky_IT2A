@@ -8,6 +8,7 @@ namespace Piskvorky_IT2A
 {
   public class Game
   {
+    public Item.Icon PlayerOnMove { get; private set; } = Item.Icon.Circle;
     public List<Item> Items { get; } = new List<Item>();
     public int Top
     {
@@ -26,7 +27,7 @@ namespace Piskvorky_IT2A
           int top = 0;
           foreach (Item item in Items)
           {
-            if(item.Y < top)
+            if (item.Y < top)
             {
               top = item.Y;
             }
@@ -114,6 +115,17 @@ namespace Piskvorky_IT2A
       }
     }
 
-
+    public void Move(int x, int y)
+    {
+      Items.Add(new Item(x, y, PlayerOnMove));
+      if(PlayerOnMove == Item.Icon.Cross)
+      {
+        PlayerOnMove = Item.Icon.Circle;
+      }
+      else
+      {
+        PlayerOnMove = Item.Icon.Cross;
+      }      
+    }
   }
 }
