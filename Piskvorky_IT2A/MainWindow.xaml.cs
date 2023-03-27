@@ -25,20 +25,22 @@ namespace Piskvorky_IT2A
     public MainWindow()
     {
       game = new Game();
+      game.Move(0, 0);
+      game.Move(1, 1);
       InitializeComponent();
       Background = Brushes.DarkGray;
     }
 
-    private Grid CreateGrid(int size, int countX, int countY)
+    private Grid CreateGrid(int size, Game game)
     {
       Grid grid = new Grid();
-      grid.Width = size * countX;
-      grid.Height = size * countY;
-      for (int x = 0; x < countX; x++)
+      grid.Width = size * game.Width;
+      grid.Height = size * game.Height;
+      for (int x = 0; x < game.Width; x++)
       {
         grid.ColumnDefinitions.Add(new ColumnDefinition());
       }
-      for (int y = 0; y < countY; y++)
+      for (int y = 0; y < game.Height; y++)
       {
         grid.RowDefinitions.Add(new RowDefinition());
       }
@@ -46,7 +48,7 @@ namespace Piskvorky_IT2A
       return grid;
     }
 
-    private void FillGridWithButtons(Grid grid)
+    private void FillGridWithButtons(Grid grid, Game game)
     {
       Button button;
       for (int x = 0; x < grid.ColumnDefinitions.Count(); x++)
@@ -60,14 +62,19 @@ namespace Piskvorky_IT2A
           Grid.SetColumn(button, x);
           Grid.SetRow(button, y);
           grid.Children.Add(button);
+          Item? item = game.Items.Find(i => i.X == x && i.Y == y);
+          if(item != null)
+          {
+
+          }
         }
       }
     }
 
     private void Window_Initialized(object sender, EventArgs e)
-    {      
-      var grid = CreateGrid(70,3,3);
-      FillGridWithButtons(grid);
+    {
+      var grid = CreateGrid(50, game);
+      FillGridWithButtons(grid, game);
     }
   }
 }

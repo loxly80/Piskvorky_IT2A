@@ -114,18 +114,20 @@ namespace Piskvorky_IT2A
         }
       }
     }
+    public int Width { get => Left + Right + 1; }
+    public int Height { get => Top + Bottom + 1; }
 
     public void Move(int x, int y)
     {
       Items.Add(new Item(x, y, PlayerOnMove));
-      if(PlayerOnMove == Item.Icon.Cross)
+      if (PlayerOnMove == Item.Icon.Cross)
       {
         PlayerOnMove = Item.Icon.Circle;
       }
       else
       {
         PlayerOnMove = Item.Icon.Cross;
-      }      
+      }
     }
   }
 }
